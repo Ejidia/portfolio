@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional portfolio showcasing my work and skills">
+    <title>Uwabeza Ejidia - Portfolio</title>
+    
+    <!-- EmailJS Library - Required for email functionality -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            // Initialize EmailJS with your Public Key
+            emailjs.init('yZWdqt3oTJ1u_IwIm');
+        })();
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --text: #334155;
+            --accent: #ec4899;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s backwards;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Floating elements for visual interest */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatAround 15s infinite linear;
+        }
+
+        @keyframes floatAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -50px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 90%;
+            height: 80%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-bar {
+            margin: 1.5rem 0;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 1.5s ease;
+            position: relative;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::after {
+            opacity: 1;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .project-content p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .contact-item:hover {
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
+        }
+
+        .contact-item h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            color: var(--text);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 200px;
+                order: -1; /* Move image above text on mobile */
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .about-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Uwabeza Ejidia</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-elements" id="floatingElements"></div>
+        <div class="hero-content">
+            <h1>Hi, I'm Uwabeza Ejidia</h1>
+            <h2>Full Stack Developer & Designer</h2>
+            <p>I create beautiful, functional, and user-friendly digital experiences that make a difference. Passionate about turning ideas into reality through clean code and elegant design.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="cvejidia.pdf" class="btn btn-secondary" download>Download CV</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Creating Digital Solutions That Matter</h3>
+                <p>I'm a passionate full-stack developer with a keen eye for design and user experience. With expertise in both front-end and back-end technologies, I build comprehensive digital solutions that are not only functional but also aesthetically pleasing.</p>
+                <p>My journey in tech began with a curiosity about how things work, which evolved into a passion for creating digital experiences that solve real-world problems. I believe in the power of technology to transform lives and businesses.</p>
+                <p>When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or mentoring aspiring developers.</p>
+            </div>
+            <div class="about-image">
+                <img src="ejidia.jpg" alt="Brazil Ejidia">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Frontend Development</h3>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>HTML/CSS</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>React</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Backend Development</h3>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Node.js</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Database Design</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Design & Tools</h3>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>UI/UX Design</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Figma</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">
+                        <span>Git & GitHub</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i>📱</i>
+                </div>
+                <div class="project-content">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-featured e-commerce solution with user authentication, payment processing, and inventory management.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i>📊</i>
+                </div>
+                <div class="project-content">
+                    <h3>Data Visualization Dashboard</h3>
+                    <p>Interactive dashboard for visualizing complex data sets with real-time updates and customizable charts.</p>
+                    <div class="project-tags">
+                        <span class="tag">D3.js</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i>🎵</i>
+                </div>
+                <div class="project-content">
+                    <h3>Music Streaming App</h3>
+                    <p>A responsive music streaming application with playlist creation, social sharing, and personalized recommendations.</p>
+                    <div class="project-tags">
+                        <span class="tag">React Native</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Redux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>uwabeza.ejidia@example.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Kigali, Rwanda</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">gh</a>
+            <a href="#" class="social-link">tw</a>
+            <a href="#" class="social-link">ig</a>
+        </div>
+        <p>&copy; 2023 Uwabeza Ejidia. All rights reserved.</p>
+    </footer>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Create floating elements
+        const floatingElements = document.getElementById('floatingElements');
+        for (let i = 0; i < 15; i++) {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            const size = Math.random() * 60 + 20;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.left = `${Math.random() * 100}%`;
+            element.style.top = `${Math.random() * 100}%`;
+            element.style.animationDelay = `${Math.random() * 5}s`;
+            element.style.animationDuration = `${15 + Math.random() * 10}s`;
+            floatingElements.appendChild(element);
+        }
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Send email using EmailJS
+            emailjs.send('service_your_service_id', 'template_your_template_id', formData)
+                .then(function(response) {
+                    alert('Message sent successfully!');
+                    contactForm.reset();
+                }, function(error) {
+                    alert('Failed to send message. Please try again later.');
+                });
+        });
+
+        // Animate progress bars when scrolled into view
+        const progressBars = document.querySelectorAll('.progress');
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progress = entry.target;
+                    const width = progress.style.width;
+                    progress.style.width = '0%';
+                    
+                    // Trigger reflow
+                    progress.offsetHeight;
+                    
+                    // Animate to the actual width
+                    setTimeout(() => {
+                        progress.style.width = width;
+                    }, 100);
+                    
+                    observer.unobserve(progress);
+                }
+            });
+        }, observerOptions);
+
+        progressBars.forEach(progress => {
+            observer.observe(progress);
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
